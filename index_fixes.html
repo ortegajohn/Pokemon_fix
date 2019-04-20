@@ -1,0 +1,489 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			Pokemon Name Challenge
+		</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+
+			body
+			{
+				background-image: url(pokemon_bg.png);
+				background-size: cover;
+				font-family: 'Poiret One', cursive;
+				font-weight: bold;
+				color: #FFF;
+			}
+
+			.container
+			{
+				position: relative;
+				width: 800px;
+				min-height: 300px;
+				overflow-x: hidden;
+				overflow-y: auto;
+				margin: auto;
+				margin-top: 5%;
+				background-color: rgba( 0, 0, 0, 0.5 );
+				padding: 15px;
+				border-radius: 15px;
+				-webkit-border-radius: 15px;
+			}
+
+			.timer
+			{
+				margin-left: 15px;
+			}
+
+			.view-list {
+				list-style-type: none;
+			}
+
+			/* .view-list li:nth-child(3) {
+				text-indent: 3px;
+			}
+
+			.view-list li:nth-child(5) {
+				font-family: 'Comic Sans', 'Comic Sans MS', cursive;
+			}
+
+			.view-list li:nth-child(17) {
+				margin-top: 19px;
+			}
+
+			.view-list li:nth-child(39) {
+				color: blue;
+			}
+
+			.view-list li:nth-child(122) {
+				text-decoration: underline;
+			}
+
+			.view-list li:nth-child(151) {
+				margin-left: 150px;
+			} */
+
+			.li-name {
+				font-size: 14pt;
+			}
+
+			.li-anchor {
+				margin-left: 15px;
+				font-size: 8pt;
+			}
+
+		</style>
+
+
+
+		<script type="text/javascript">
+
+		var entryList = new Array();
+		var pokelist = new Array();
+		pokelist.push( 'bulbasaur' );
+		pokelist.push( 'ivysaur' );
+		pokelist.push( 'venusaur' );
+        pokelist.push( 'charmander' );
+        pokelist.push( 'charmeleon' );
+        pokelist.push( 'charizard' );
+        pokelist.push( 'squirtle' );
+        pokelist.push( 'wartortle' );
+        pokelist.push( 'blastoise' );
+        pokelist.push( 'caterpie' );
+        pokelist.push( 'metapod' );
+        pokelist.push( 'butterfree' );
+        pokelist.push( 'weedle' );
+        pokelist.push( 'kakuna' );
+        pokelist.push( 'beedrill' );
+        pokelist.push( 'pidgey' );
+        pokelist.push( 'pidgeotto' );
+        pokelist.push( 'pidgeot' );
+        pokelist.push( 'rattata' );
+        pokelist.push( 'raticate' );
+        pokelist.push( 'spearow' );
+        pokelist.push( 'fearow' );
+        pokelist.push( 'ekans' );
+        pokelist.push( 'arbok' );
+        pokelist.push( 'pikachu' );
+        pokelist.push( 'raichu' );
+        pokelist.push( 'sandshrew' );
+        pokelist.push( 'sandslash' );
+        pokelist.push( 'nidoran♀' );
+        pokelist.push( 'nidorina' );
+        pokelist.push( 'nidoqueen' );
+        pokelist.push( 'nidoran♂' );
+        pokelist.push( 'nidorino' );
+        pokelist.push( 'nidoking' );
+        pokelist.push( 'clefairy' );
+        pokelist.push( 'clefable' );
+        pokelist.push( 'vulpix' );
+        pokelist.push( 'ninetales' );
+        pokelist.push( 'jigglypuff' );
+        pokelist.push( 'wigglytuff' );
+        pokelist.push( 'zubat' );
+        pokelist.push( 'golbat' );
+        pokelist.push( 'oddish' );
+        pokelist.push( 'gloom' );
+        pokelist.push( 'vileplume' );
+        pokelist.push( 'paras' );
+        pokelist.push( 'parasect' );
+        pokelist.push( 'venonat' );
+        pokelist.push( 'venomoth' );
+        pokelist.push( 'diglett' );
+        pokelist.push( 'dugtrio' );
+        pokelist.push( 'meowth' );
+        pokelist.push( 'persian' );
+        pokelist.push( 'psyduck' );
+        pokelist.push( 'golduck' );
+        pokelist.push( 'mankey' );
+        pokelist.push( 'primeape' );
+        pokelist.push( 'growlithe' );
+        pokelist.push( 'arcanine' );
+        pokelist.push( 'poliwag' );
+        pokelist.push( 'poliwhirl' );
+        pokelist.push( 'poliwrath' );
+        pokelist.push( 'abra' );
+        pokelist.push( 'kadabra' );
+        pokelist.push( 'alakazam' );
+        pokelist.push( 'machop' );
+        pokelist.push( 'machoke' );
+        pokelist.push( 'machamp' );
+        pokelist.push( 'bellsprout' );
+        pokelist.push( 'weepinbell' );
+        pokelist.push( 'victreebel' );
+        pokelist.push( 'tentacool' );
+        pokelist.push( 'tentacruel' );
+        pokelist.push( 'geodude' );
+        pokelist.push( 'graveler' );
+        pokelist.push( 'golem' );
+        pokelist.push( 'ponyta' );
+        pokelist.push( 'rapidash' );
+        pokelist.push( 'slowpoke' );
+        pokelist.push( 'slowbro' );
+        pokelist.push( 'magnemite' );
+        pokelist.push( 'magneton' );
+        pokelist.push( "farfetch'd" );
+        pokelist.push( 'doduo' );
+        pokelist.push( 'dodrio' );
+        pokelist.push( 'seel' );
+        pokelist.push( 'dewgong' );
+        pokelist.push( 'grimer' );
+        pokelist.push( 'muk' );
+        pokelist.push( 'shellder' );
+        pokelist.push( 'cloyster' );
+        pokelist.push( 'gastly' );
+        pokelist.push( 'haunter' );
+        pokelist.push( 'gengar' );
+        pokelist.push( 'onix' );
+        pokelist.push( 'drowzee' );
+        pokelist.push( 'hypno' );
+        pokelist.push( 'krabby' );
+        pokelist.push( 'kingler' );
+        pokelist.push( 'voltorb' );
+        pokelist.push( 'electrode' );
+        pokelist.push( 'exeggcute' );
+        pokelist.push( 'exeggutor' );
+        pokelist.push( 'cubone' );
+        pokelist.push( 'marowak' );
+        pokelist.push( 'hitmonlee' );
+        pokelist.push( 'hitmonchan' );
+        pokelist.push( 'lickitung' );
+        pokelist.push( 'koffing' );
+        pokelist.push( 'weezing' );
+        pokelist.push( 'rhyhorn' );
+        pokelist.push( 'rhydon' );
+        pokelist.push( 'chansey' );
+        pokelist.push( 'tangela' );
+        pokelist.push( 'kangaskhan' );
+        pokelist.push( 'horsea' );
+        pokelist.push( 'seadra' );
+        pokelist.push( 'goldeen' );
+        pokelist.push( 'seaking' );
+        pokelist.push( 'staryu' );
+        pokelist.push( 'starmie' );
+        pokelist.push( 'mr. mime' );
+        pokelist.push( 'scyther' );
+        pokelist.push( 'jynx' );
+        pokelist.push( 'electabuzz' );
+        pokelist.push( 'magmar' );
+        pokelist.push( 'pinsir' );
+        pokelist.push( 'tauros' );
+        pokelist.push( 'magikarp' );
+        pokelist.push( 'gyarados' );
+        pokelist.push( 'lapras' );
+        pokelist.push( 'ditto' );
+        pokelist.push( 'eevee' );
+        pokelist.push( 'vaporeon' );
+        pokelist.push( 'jolteon' );
+        pokelist.push( 'flareon' );
+        pokelist.push( 'porygon' );
+        pokelist.push( 'omanyte' );
+        pokelist.push( 'omastar' );
+        pokelist.push( 'kabuto' );
+        pokelist.push( 'kabutops' );
+        pokelist.push( 'aerodactyl' );
+        pokelist.push( 'snorlax' );
+        pokelist.push( 'articuno' );
+        pokelist.push( 'zapdos' );
+        pokelist.push( 'moltres' );
+        pokelist.push( 'dratini' );
+        pokelist.push( 'dragonair' );
+        pokelist.push( 'dragonite' );
+        pokelist.push( 'mewtwo' );
+        pokelist.push( 'mew' );
+
+        var did_time_start = 0;
+
+        // $(document).ready(function(){
+        //         $('#begin-button').click( function(e) { timer = setTimeout( incrementTimer, 1000 ); } );			
+        // });
+        
+
+        $(document).on("click", "#begin-button", function(e){
+            timer = setTimeout( incrementTimer, 1000 );
+            document.getElementById("begin-button").id = "newid";
+        });
+
+		function addRow()
+		{
+			var nameInput = $( '#form-name-input' );
+			var viewList = $( '#view-list' );
+
+			var entry = nameInput.val().toLowerCase();
+
+			if ( jQuery.inArray( entry.toLowerCase(), pokelist ) == -1 )
+				return;
+
+			if ( jQuery.inArray( entry, entryList ) > -1 )
+				return;
+
+			entryList.push( entry );
+			viewList.append( '<li id="'+entry+'"><span class="li-name">'+entry+'</span><a href="javascript:removeRow('+entry+')"n class="li-anchor">Remove</a></li>' );
+			nameInput.val('');
+			updateCount(1);
+		}
+
+		function removeRow( node )
+		{
+			var viewList = $( '#view-list' );
+			console.log( node );
+			node.remove();
+            updateCount_down(1)
+		}
+
+		var count = 0;
+		var seconds = 0;
+		var minutes = 0;
+		var timer = null;
+
+		function incrementTimer()
+		{
+			if ( seconds == 59 ) {
+				seconds = 0;
+				minutes++;
+			} else {
+				seconds++;
+			}
+
+			$( '#timer' ).html( minutes + ' min ' + seconds + 'sec');
+
+			timer = setTimeout( incrementTimer, 1000 );
+		}
+
+        function updateCount_down( value )
+		{
+			count-=value;
+			$('#count').html('Count: '+count);
+		}
+
+		function updateCount( value )
+		{
+			count+=value;
+			$('#count').html('Count: '+count);
+		}
+
+		</script>
+	</head>
+
+
+	<body>
+		<div id="container" class="container">
+			<div id="banner" class="banner">
+				<span><img height="48px" width="48px" style="display: inline-block;" src="http://fc06.deviantart.net/fs71/i/2011/030/2/7/pokedex_by_dorifutorabbit-d38eqri.png" alt="" /></span><h1 style="display: inline-block; margin-left: 15px;" margin-top: -15px;"">How wel do you know yuor pokemon?</h1>
+				<div>Once you begin, you have 2 mintues to name as many of the first 151 pokemon as you can. Good luck!</div>
+				<br />
+				<div><button id="begin-button" onclick="">Go!</button><span id="timer" class="timer">0 min 0 sec</span></div>
+			</div>
+			<div id="view" class="view">
+				<br />
+				<div id="count" class="count">Count: 0</div>
+				<ul id="view-list" class="view-list">
+				</ul>
+			</div>
+			<div id="submission-form" class="form">
+				<form id="submit-form" class="submit-form" action="javascript:addRow(this);">
+					<input type="text" id="form-name-input" class="form-name-input" />
+					<input type="submit" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+
+<!--
+bulbasaur
+ivysaur
+venusaur
+charmander
+charmeleon
+charizard
+squirtle
+wartortle
+blastoise
+caterpie
+metapod
+butterfree
+weedle
+kakuna
+beedrill
+pidgey
+pidgeotto
+pidgeot
+rattata
+raticate
+spearow
+fearow
+ekans
+arbok
+pikachu
+raichu
+sandshrew
+sandslash
+nidoran♀
+nidorina
+nidoqueen
+nidoran♂
+nidorino
+nidoking
+clefairy
+clefable
+vulpix
+ninetales
+jigglypuff
+wigglytuff
+zubat
+golbat
+oddish
+gloom
+vileplume
+paras
+parasect
+venonat
+venomoth
+diglett
+dugtrio
+meowth
+persian
+psyduck
+golduck
+mankey
+primeape
+growlithe
+arcanine
+poliwag
+poliwhirl
+poliwrath
+abra
+kadabra
+alakazam
+machop
+machoke
+machamp
+bellsprout
+weepinbell
+victreebel
+tentacool
+tentacruel
+geodude
+graveler
+golem
+ponyta
+rapidash
+slowpoke
+slowbro
+magnemite
+magneton
+farfetch'd
+doduo
+dodrio
+seel
+dewgong
+grimer
+muk
+shellder
+cloyster
+gastly
+haunter
+gengar
+onix
+drowzee
+hypno
+krabby
+kingler
+voltorb
+electrode
+exeggcute
+exeggutor
+cubone
+marowak
+hitmonlee
+hitmonchan
+lickitung
+koffing
+weezing
+rhyhorn
+rhydon
+chansey
+tangela
+kangaskhan
+horsea
+seadra
+goldeen
+seaking
+staryu
+starmie
+mr. mime
+scyther
+jynx
+electabuzz
+magmar
+pinsir
+tauros
+magikarp
+gyarados
+lapras
+ditto
+eevee
+vaporeon
+jolteon
+flareon
+porygon
+omanyte
+omastar
+kabuto
+kabutops
+aerodactyl
+snorlax
+articuno
+zapdos
+moltres
+dratini
+dragonair
+dragonite
+mewtwo
+mew
+-->
